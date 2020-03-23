@@ -1,34 +1,45 @@
 import React, { Component } from 'react';
+import addToMailchimp from 'gatsby-plugin-mailchimp'
 
 export class EmailForm extends Component {
   constructor() {
     super();
-    this.state = { message: '' };
+    this.state = { email: '', msg: '' };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.setState({ message: 'Thank you!' });
-    setTimeout(() => {
-      this.setState({ message: '' });
-    }, 3000);
+    addToMailchimp(this.state.email).then((data) => {
+      if (this.state.email === '') {
+        this.setState({
+          msg: 'Please provide valid email'
+        })
+      } else {
+        this.setState({ email: '', msg: data.msg.split('.').slice(0,2).join('.') });
+      }
+    }).catch(() => {
+      console.log("Error")
+      this.setState({ email: '' });
+    })
   }
 
   render() {
-    const { message } = this.state;
+    const { msg } = this.state;
     return (
       <form id="signup-form" onSubmit={this.onSubmit} method="post" action="#">
         <input
           type="email"
           name="email"
+          value={this.state.email}
           id="email"
+          onChange={(e) => { this.setState({ email: e.target.value })}}
           placeholder="Email Address"
         />
         <input type="submit" value="Sign Up" />
-        <span className={`${message ? 'visible success' : ''} message`}>
-          {message}
+        <span className={`${msg ? 'visible success' : ''} message`}>
+          {msg}
         </span>
       </form>
     );

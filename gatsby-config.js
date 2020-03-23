@@ -21,5 +21,11 @@ module.exports = {
     },
     'gatsby-plugin-sass',
     'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+          endpoint: 'https://vnovick.us19.list-manage.com/subscribe/post?u=2a6de8fa171277b6e4d0de1cd&amp;id=cdbfd95a3e', // add your MC list endpoint here; see instructions below
+      },
+  }
   ],
 };
