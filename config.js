@@ -6,8 +6,7 @@ module.exports = {
   manifestBackgroundColor: '#663399',
   manifestThemeColor: '#663399',
   manifestDisplay: 'standalone',
-  manifestIcon: 'src/assets/img/website-icon.png',
-  pathPrefix: `/gatsby-starter-eventually/`, // This path is subpath of your hosting https://domain/portfolio
+  manifestIcon: 'src/assets/img/website-icon.png'
   // social
   heading: 'Remote Tech Talks',
   subHeading:
