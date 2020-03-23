@@ -28,7 +28,7 @@ export class EmailForm extends Component {
   render() {
     const { msg } = this.state;
     return (
-      <form id="signup-form" onSubmit={this.onSubmit} method="post" action="#">
+      <form id="signup-form" onSubmit={this.onSubmit}>
         <input
           type="email"
           name="email"
